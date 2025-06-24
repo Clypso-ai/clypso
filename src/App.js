@@ -6,7 +6,7 @@ import Features from './components/Features';
 import Testimonials from './components/Testimonials';
 import FAQ from './components/FAQ';
 import CTA from './components/CTA';
-import FeatureStepCard from './components/FeatureStepCard';
+import LiveDemo from './components/LiveDemo';
 
 function useFadeInOnScroll() {
   const ref = useRef();
@@ -32,6 +32,7 @@ function App() {
   const [heroRef, heroVisible] = useFadeInOnScroll();
   const [howRef, howVisible] = useFadeInOnScroll();
   const [featuresRef, featuresVisible] = useFadeInOnScroll();
+  const [demoRef, demoVisible] = useFadeInOnScroll();
   const [testimonialsRef, testimonialsVisible] = useFadeInOnScroll();
   const [faqRef, faqVisible] = useFadeInOnScroll();
   const [emailRef, emailVisible] = useFadeInOnScroll();
@@ -41,35 +42,27 @@ function App() {
       <div ref={heroRef}>
         <Hero isVisible={heroVisible} />
       </div>
-      
+
       <div ref={howRef}>
         <HowItWorks isVisible={howVisible} />
       </div>
-      
+
       <div ref={featuresRef}>
         <Features isVisible={featuresVisible} />
       </div>
 
-      {/* New Visual Feature Demo Section */}
-      <section className="py-24 px-4 sm:px-6 lg:px-8 bg-white">
-        <div className="max-w-7xl mx-auto">
-          <h2 className="text-4xl sm:text-5xl font-black mb-16 text-center text-gray-900 tracking-tight">See Clypso in Action</h2>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-12">
-            <FeatureStepCard type="upload" />
-            <FeatureStepCard type="ai" />
-            <FeatureStepCard type="output" />
-          </div>
-        </div>
-      </section>
-      
+      <div ref={demoRef}>
+        <LiveDemo isVisible={demoVisible} />
+      </div>
+
       <div ref={testimonialsRef}>
         <Testimonials isVisible={testimonialsVisible} />
       </div>
-      
+
       <div ref={faqRef}>
         <FAQ isVisible={faqVisible} />
       </div>
-      
+
       <div ref={emailRef}>
         <CTA isVisible={emailVisible} />
       </div>
