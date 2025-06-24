@@ -6,9 +6,7 @@ import Features from './components/Features';
 import Testimonials from './components/Testimonials';
 import FAQ from './components/FAQ';
 import CTA from './components/CTA';
-import FeatureClipCard from './components/FeatureClipCard';
-import BeforeAfterToggle from './components/BeforeAfterToggle';
-import VerticalClipMockup from './components/VerticalClipMockup';
+import FeatureStepCard from './components/FeatureStepCard';
 
 function useFadeInOnScroll() {
   const ref = useRef();
@@ -52,19 +50,14 @@ function App() {
         <Features isVisible={featuresVisible} />
       </div>
 
-      {/* Visual Feature Demos Section */}
+      {/* New Visual Feature Demo Section */}
       <section className="py-24 px-4 sm:px-6 lg:px-8 bg-white">
         <div className="max-w-7xl mx-auto">
-          <h2 className="text-4xl sm:text-5xl font-black mb-16 text-center text-gray-900 tracking-tight">How Clypso Works Visually</h2>
+          <h2 className="text-4xl sm:text-5xl font-black mb-16 text-center text-gray-900 tracking-tight">See Clypso in Action</h2>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-12">
-            <FeatureClipCard thumbnail="https://images.unsplash.com/photo-1519125323398-675f0ddb6308?auto=format&fit=crop&w=320&q=80" subtitle="Auto subtitles appear here!" />
-            <BeforeAfterToggle
-              beforeImg="https://images.unsplash.com/photo-1465101046530-73398c7f28ca?auto=format&fit=crop&w=320&q=80"
-              afterImg="https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=320&q=80"
-              beforeLabel="Long Video"
-              afterLabel="Short Clip"
-            />
-            <VerticalClipMockup thumbnail="https://images.unsplash.com/photo-1519125323398-675f0ddb6308?auto=format&fit=crop&w=320&q=80" caption="AI finds the punchline!" />
+            <FeatureStepCard type="upload" />
+            <FeatureStepCard type="ai" />
+            <FeatureStepCard type="output" />
           </div>
         </div>
       </section>
