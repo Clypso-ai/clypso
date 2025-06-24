@@ -47,8 +47,6 @@ export default function FeatureStepCard({ type }) {
     'flex flex-col items-center w-full max-w-xs mx-auto rounded-2xl shadow-lg bg-white transition-all duration-300 focus-within:ring-4 focus-within:ring-blue-200 outline-none';
   const cardHover =
     'hover:scale-105 hover:shadow-2xl hover:bg-blue-50 active:scale-100';
-  const cardActive =
-    'scale-105 shadow-2xl bg-blue-50';
 
   // Upload Demo
   if (type === 'upload') {
