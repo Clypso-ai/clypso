@@ -21,7 +21,7 @@ const Hero = ({ isVisible }) => {
 
   return (
     <section
-      className={`flex flex-col items-center justify-center min-h-screen py-16 sm:py-24 bg-gradient-to-br from-white to-blue-50 px-4 sm:px-6 lg:px-8 transition-all duration-1000 ease-out ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}
+      className={`flex flex-col items-center justify-center min-h-screen py-16 sm:py-24 bg-gradient-to-br from-blue-600 via-purple-600 to-pink-500 px-4 sm:px-6 lg:px-8 transition-all duration-1000 ease-out ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}
     >
       <div className="max-w-4xl w-full text-center space-y-8">
         <div className="h-20 w-20 bg-gradient-to-br from-blue-600 to-purple-600 rounded-full mx-auto mb-8 flex items-center justify-center shadow-2xl transform hover:scale-110 transition-transform duration-300">
