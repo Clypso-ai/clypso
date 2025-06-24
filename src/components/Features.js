@@ -1,4 +1,7 @@
 import React from 'react';
+import VideoClipperDemo from './VideoClipperDemo';
+import SubtitleDemo from './SubtitleDemo';
+import VerticalFormatDemo from './VerticalFormatDemo';
 
 const Features = ({ isVisible }) => {
   const features = [
@@ -111,6 +114,14 @@ const Features = ({ isVisible }) => {
               <p className="text-gray-700 text-lg leading-relaxed">{feature.description}</p>
             </div>
           ))}
+        </div>
+
+        {/* Interactive Demos */}
+        <h3 className="text-3xl font-black mt-24 mb-10 text-center text-gray-900 tracking-tight">See Clypso in Action</h3>
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+          <VideoClipperDemo />
+          <SubtitleDemo />
+          <VerticalFormatDemo />
         </div>
       </div>
     </section>
