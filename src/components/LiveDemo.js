@@ -5,7 +5,6 @@ import {
   VideoCameraIcon,
   PlayIcon,
   CheckCircleIcon,
-  ArrowRightIcon,
 } from '@heroicons/react/solid';
 
 const captions = {
