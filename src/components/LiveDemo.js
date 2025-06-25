@@ -1,175 +1,71 @@
-import React, { useState, useEffect, useRef } from 'react';
+import React from 'react';
+import { PlayIcon, CheckCircleIcon, LightningBoltIcon } from '@heroicons/react/solid';
 
 const steps = [
   {
-    id: 'upload',
-    title: 'Step 1: Upload Your Video',
-    description: 'Drag and drop your long sports footage to start the magic.',
-    videoUrl: 'https://player.vimeo.com/external/357623948.sd.mp4?s=647c5c3ae76404b1a7f0621d1f5c3c18d44b4686&profile_id=164&oauth2_token_id=57447761',
+    title: 'Step 1: Upload Longform Video',
+    description: 'Drag and drop or upload any longform video such as podcasts, interviews, webinars, or sports games. Clypso scans the entire timeline.',
+    video: 'https://samplelib.com/lib/preview/mp4/sample-5s.mp4',
+    icon: <UploadIcon className="h-8 w-8 text-indigo-600" />,
   },
   {
-    id: 'ai',
-    title: 'Step 2: AI Detects Highlights',
-    description: 'Clypso’s AI scans the video, finds punchlines and key moments, and builds a highlight timeline.',
-    videoUrl: 'https://player.vimeo.com/external/275380425.sd.mp4?s=3f6a7d7ca093b7a8cc109c3bff1e2c84ca28e9f8&profile_id=164&oauth2_token_id=57447761',
-    punchlines: [
-      { time: 5, label: 'Epic Dunk!' },
-      { time: 15, label: 'Fast Break' },
-      { time: 28, label: 'Game Winner' },
-    ],
+    title: 'Step 2: AI Detects Key Moments',
+    description: 'Clypso uses AI to identify viral punchlines, audience reactions, high emotion segments, and dramatic pauses — ready for short-form transformation.',
+    video: 'https://samplelib.com/lib/preview/mp4/sample-10s.mp4',
+    icon: <LightningBoltIcon className="h-8 w-8 text-yellow-500" />,
   },
   {
-    id: 'output',
-    title: 'Step 3: Get Shareable Clips',
-    description: 'Receive short-form, captioned videos optimized for Reels, TikTok, and Shorts.',
-    shortClipUrl: 'https://player.vimeo.com/external/275380425.sd.mp4?s=3f6a7d7ca093b7a8cc109c3bff1e2c84ca28e9f8&profile_id=164&oauth2_token_id=57447761',
-    longClipUrl: 'https://player.vimeo.com/external/357623948.sd.mp4?s=647c5c3ae76404b1a7f0621d1f5c3c18d44b4686&profile_id=164&oauth2_token_id=57447761',
+    title: 'Step 3: Export Share-Ready Clips',
+    description: 'Get multiple punchy short-form clips, pre-captioned, branded, and optimized for TikTok, Instagram Reels, and YouTube Shorts.',
+    video: 'https://samplelib.com/lib/preview/mp4/sample-15s.mp4',
+    icon: <CheckCircleIcon className="h-8 w-8 text-green-500" />,
   },
 ];
 
-export default function LiveDemo() {
-  const [activeStep, setActiveStep] = useState(0);
-  const [captionVisible, setCaptionVisible] = useState(true);
-  const captionTimeoutRef = useRef();
+function UploadIcon(props) {
+  return <svg {...props} fill="none" stroke="currentColor" strokeWidth={2} viewBox="0 0 24 24">
+    <path strokeLinecap="round" strokeLinejoin="round" d="M4 16v1a2 2 0 002 2h12a2 2 0 002-2v-1M12 12V4m0 0l-4 4m4-4l4 4" />
+  </svg>;
+}
 
-  useEffect(() => {
-    // Auto cycle steps every 12 seconds
-    const interval = setInterval(() => {
-      setActiveStep((prev) => (prev + 1) % steps.length);
-      setCaptionVisible(false);
-      // Show caption after fade out
-      clearTimeout(captionTimeoutRef.current);
-      captionTimeoutRef.current = setTimeout(() => setCaptionVisible(true), 700);
-    }, 12000);
-    return () => {
-      clearInterval(interval);
-      clearTimeout(captionTimeoutRef.current);
-    };
-  }, []);
-
-  const renderTimelineBars = () => {
-    const punchlines = steps[1].punchlines;
-    return punchlines.map(({ time, label }, idx) => (
-      <div key={idx} className="flex flex-col items-center" role="listitem">
-        <div
-          className="w-3 h-10 bg-yellow-400 rounded mb-1 animate-pulse"
-          title={`${label} at ${time}s`}
-          style={{ animationDelay: `${idx * 0.6}s` }}
-        />
-        <span className="text-xs text-yellow-600 font-semibold">{label}</span>
-      </div>
-    ));
-  };
-
+const LiveDemo = () => {
   return (
-    <section
-      className="max-w-7xl mx-auto px-4 py-20 sm:px-6 lg:px-8 bg-white rounded-3xl shadow-xl"
-      aria-label="Clypso live demo"
-    >
-      <h2 className="text-center text-4xl font-extrabold mb-12 text-gray-900">See Clypso in Action</h2>
+    <section className="py-20 px-6 sm:px-12 bg-white">
+      <div className="max-w-7xl mx-auto text-center">
+        <h2 className="text-4xl font-extrabold text-gray-900 mb-4">See Clypso in Action</h2>
+        <p className="text-lg text-gray-600 mb-16">
+          A smarter, faster way to turn longform video into viral short-form content.
+        </p>
 
-      <nav
-        className="flex justify-center gap-8 mb-12"
-        aria-label="Steps navigation"
-      >
-        {steps.map((step, idx) => (
-          <button
-            key={step.id}
-            onClick={() => setActiveStep(idx)}
-            className={`px-4 py-2 rounded-full font-semibold transition ${
-              idx === activeStep
-                ? 'bg-blue-600 text-white shadow-lg'
-                : 'bg-gray-200 text-gray-600 hover:bg-gray-300'
-            }`}
-            aria-current={idx === activeStep ? 'step' : undefined}
-          >
-            {step.title}
-          </button>
-        ))}
-      </nav>
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-12">
+          {steps.map((step, index) => (
+            <div
+              key={index}
+              className="bg-gray-50 rounded-2xl shadow-md hover:shadow-xl transition p-6 flex flex-col items-center text-center"
+            >
+              <div className="mb-4">{step.icon}</div>
+              <h3 className="text-xl font-semibold text-gray-900 mb-2">{step.title}</h3>
+              <p className="text-sm text-gray-600 mb-4">{step.description}</p>
 
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
-        <div className="relative rounded-lg overflow-hidden shadow-lg border border-gray-200">
-          {(activeStep === 0 || activeStep === 1) && (
-            <video
-              key={steps[activeStep].videoUrl}
-              src={steps[activeStep].videoUrl}
-              autoPlay
-              loop
-              muted
-              playsInline
-              className="w-full h-auto object-cover"
-              controls={false}
-            />
-          )}
-
-          {activeStep === 2 && (
-            <div className="flex w-full h-64 md:h-80 gap-4">
-              <div className="flex-1 flex flex-col border border-gray-300 rounded-md overflow-hidden shadow-sm">
-                <span className="bg-gray-100 px-3 py-1 text-sm font-medium text-gray-700">Original Video</span>
+              <div className="relative w-full aspect-video rounded-xl overflow-hidden">
                 <video
-                  src={steps[2].longClipUrl}
+                  className="w-full h-full object-cover rounded-xl shadow"
                   autoPlay
-                  loop
                   muted
-                  playsInline
-                  className="w-full h-full object-cover"
-                  controls={false}
-                />
-              </div>
-              <div className="flex-1 flex flex-col border border-blue-500 rounded-md overflow-hidden shadow-lg">
-                <span className="bg-blue-100 px-3 py-1 text-sm font-medium text-blue-700">Clypso Highlights</span>
-                <video
-                  src={steps[2].shortClipUrl}
-                  autoPlay
                   loop
-                  muted
                   playsInline
-                  className="w-full h-full object-cover"
-                  controls={false}
+                  src={step.video}
                 />
+                <div className="absolute inset-0 flex items-center justify-center bg-black/30">
+                  <PlayIcon className="h-12 w-12 text-white opacity-80" />
+                </div>
               </div>
             </div>
-          )}
-
-          {activeStep === 1 && (
-            <div
-              className="absolute bottom-4 left-4 right-4 flex justify-center gap-6"
-              aria-label="Detected punchline timeline"
-              role="list"
-            >
-              {renderTimelineBars()}
-            </div>
-          )}
-        </div>
-
-        <div>
-          <h3 className="text-2xl font-bold mb-4 text-gray-900">{steps[activeStep].title}</h3>
-          <p className="mb-6 text-gray-700 text-lg max-w-lg">{steps[activeStep].description}</p>
-
-          {activeStep === 1 && captionVisible && (
-            <div
-              className="p-4 bg-yellow-100 border border-yellow-400 rounded-lg text-yellow-800 font-semibold shadow-md transition-opacity duration-700"
-              role="alert"
-              aria-live="polite"
-            >
-              Detecting "Epic Dunk!" ... <br />
-              Finding the fastest breaks ... <br />
-              Highlighting the game winner moment...
-            </div>
-          )}
-
-          {activeStep === 2 && captionVisible && (
-            <button
-              className="mt-6 px-6 py-3 bg-blue-600 hover:bg-blue-700 text-white font-bold rounded-full shadow-lg transition"
-              onClick={() => alert('Ready to try Clypso? Contact us to get started!')}
-              aria-label="Contact Clypso"
-            >
-              Get Started Today
-            </button>
-          )}
+          ))}
         </div>
       </div>
     </section>
   );
-}
+};
+
+export default LiveDemo;
